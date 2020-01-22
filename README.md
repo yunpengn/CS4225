@@ -1,5 +1,7 @@
 # CS4225 Big Data Systems for Data Science
 
+[![Build Status](https://travis-ci.com/yunpengn/CS4225.svg?branch=master)](https://travis-ci.com/yunpengn/CS4225)
+
 __AY2019/2020 Semester 2<br>
 School of Computing<br>
 National University of Singapore__
