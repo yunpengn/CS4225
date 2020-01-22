@@ -1,37 +1,27 @@
-## Welcome to GitHub Pages
+# CS4225 Big Data Systems for Data Science
 
-You can use the [editor on GitHub](https://github.com/yunpengn/CS4225/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+__AY2019/2020 Semester 2<br>
+School of Computing<br>
+National University of Singapore__
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+#### Taught by [He Bingsheng](https://www.comp.nus.edu.sg/~hebs/)
 
-### Markdown
+Data science incorporates varying elements and builds on techniques and theories from many fields, including statistics, data engineering, data mining, visualization, data warehousing, and high-performance computing systems with the goal of extracting meaning from big data and creating data products. Data science needs advanced computing systems such as Apache Hadoop and Spark to address big data challenges. In this module, students will learn various computing systems and optimization techniques that are used in data science with emphasis on the system building and algorithmic optimizations of these techniques.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Weekly Workload
 
-```markdown
-Syntax highlighted code block
+- Lecture: 2 hrs
+- Tutorial: 1 hrs
+- Project: 3 hrs
+- Preparation: 4 hrs
 
-# Header 1
-## Header 2
-### Header 3
+## CA Components
 
-- Bulleted
-- List
+- Assignments 20%
+- Team Project 45%
+- Final Test 35%
+- System Survey 10% (for CS5425 only)
 
-1. Numbered
-2. List
+## Licence
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/yunpengn/CS4225/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+[GNU General Public Licence 3.0](LICENSE)
