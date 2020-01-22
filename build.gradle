@@ -16,7 +16,13 @@ wrapper {
 
 dependencies {
     implementation(
-        'org.apache.hadoop:hadoop-common:3.2.1'
+        'org.apache.hadoop:hadoop-common:3.2.1',
+        'org.apache.hadoop:hadoop-hdfs:3.2.1',
+        'org.apache.hadoop:hadoop-hdfs-httpfs:3.2.1',
+        'org.apache.hadoop:hadoop-kms:3.2.1',
+        'org.apache.hadoop:hadoop-mapreduce:3.2.1',
+        'org.apache.hadoop:hadoop-tools:1.2.1',
+        'org.apache.hadoop:hadoop-yarn:3.2.1'
     )
     testImplementation(
         'org.junit.jupiter:junit-jupiter-api:5.6.0'
