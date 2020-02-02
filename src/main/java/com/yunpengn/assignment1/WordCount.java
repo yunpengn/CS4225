@@ -13,33 +13,44 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.StringTokenizer;
 
 public class WordCount {
   public static void main(String[] args) throws Exception {
-    Configuration conf = new Configuration();
-    String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
+    final Configuration conf = new Configuration();
+    final String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 
-    // here you can change another way to get the input and output
+    // Parses the CLI input.
     if (otherArgs.length != 3) {
       System.err.println("Usage: wordCount <input1> <input2> <out>");
       System.exit(2);
     }
+    final URL input1 = WordCount.class.getResource(otherArgs[0]);
+    final URL input2 = WordCount.class.getResource(otherArgs[1]);
+    final URL output = WordCount.class.getResource(otherArgs[2]);
 
-    Job job = new Job(conf, "word count multiple inputs");
+    // Creates the job.
+    final Job job = new Job(conf, "word count multiple inputs");
     job.setJarByClass(WordCount.class);
 
-    MultipleInputs.addInputPath(job, new Path(otherArgs[0]), TextInputFormat.class, Mapper1.class);
-    MultipleInputs.addInputPath(job, new Path(otherArgs[1]), TextInputFormat.class, Mapper2.class);
-
-    job.setCombinerClass(IntSumReducer.class);
-    job.setReducerClass(IntSumReducer.class);
+    // Sets the input & output for two mappers.
+    MultipleInputs.addInputPath(job, new Path(input1.toURI()), TextInputFormat.class, Mapper1.class);
+    MultipleInputs.addInputPath(job, new Path(input2.toURI()), TextInputFormat.class, Mapper2.class);
     job.setMapOutputKeyClass(Text.class);
     job.setMapOutputValueClass(IntWritable.class);
+
+    // Sets the combiner & reducer.
+    job.setCombinerClass(IntSumReducer.class);
+    job.setReducerClass(IntSumReducer.class);
     job.setOutputKeyClass(Text.class);
     job.setOutputValueClass(IntWritable.class);
     job.setNumReduceTasks(1);
-    FileOutputFormat.setOutputPath(job, new Path(otherArgs[2]));
+
+    // Sets the final output.
+    FileOutputFormat.setOutputPath(job, new Path(output.toURI()));
+
+    // Exits properly.
     System.exit(job.waitForCompletion(true) ? 0 : 1);
   }
 
@@ -47,11 +58,11 @@ public class WordCount {
    * Mapper 1.
    */
   public static class Mapper1 extends Mapper<Object, Text, Text, IntWritable> {
-    private Text word = new Text();
+    private final Text word = new Text();
     private final static IntWritable one = new IntWritable(1);
 
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
-      StringTokenizer itr = new StringTokenizer(value.toString());
+      final StringTokenizer itr = new StringTokenizer(value.toString());
 
       while (itr.hasMoreTokens()) {
         word.set(itr.nextToken());
@@ -64,14 +75,14 @@ public class WordCount {
    * Mapper 2.
    */
   public static class Mapper2 extends Mapper<Object, Text, Text, IntWritable> {
-    private Text word = new Text();
+    private final Text word = new Text();
     private final static IntWritable one = new IntWritable(1);
 
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
-      StringTokenizer itr = new StringTokenizer(value.toString());
+      final StringTokenizer iterator = new StringTokenizer(value.toString());
 
-      while (itr.hasMoreTokens()) {
-        word.set(itr.nextToken());
+      while (iterator.hasMoreTokens()) {
+        word.set(iterator.nextToken());
         context.write(word, one);
       }
     }
@@ -81,13 +92,14 @@ public class WordCount {
    * Sum the word count.
    */
   public static class IntSumReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-    private IntWritable result = new IntWritable();
+    private final IntWritable result = new IntWritable();
 
     public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
       int sum = 0;
-      for (IntWritable val: values) {
+      for (final IntWritable val: values) {
         sum += val.get();
       }
+
       result.set(sum);
       context.write(key, result);
     }
