@@ -31,6 +31,7 @@ public class CommonWords {
       System.exit(2);
     }
 
+    // Creates job #1.
     Job job1 = new Job(conf, "WordCount1");
     job1.setJarByClass(CommonWords.class);
     job1.setMapperClass(TokenizerWCMapper.class);
@@ -43,6 +44,7 @@ public class CommonWords {
     FileOutputFormat.setOutputPath(job1, new Path(otherArgs[1]));
     job1.waitForCompletion(true);
 
+    // Creates job #2.
     Job job2 = new Job(conf, "WordCount2");
     job2.setJarByClass(CommonWords.class);
     job2.setMapperClass(TokenizerWCMapper.class);
@@ -85,7 +87,7 @@ public class CommonWords {
   }
 
   public static class TokenizerWCMapper extends Mapper<Object, Text, Text, IntWritable> {
-    Set<String> stopwords = new HashSet<String>();
+    Set<String> stopwords = new HashSet<>();
 
     @Override
     protected void setup(Context context) {
