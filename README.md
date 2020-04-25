@@ -1,6 +1,6 @@
 # CS4225 Big Data Systems for Data Science
 
-[![Build Status](https://travis-ci.com/yunpengn/CS4225.svg?branch=master)](https://travis-ci.com/yunpengn/CS4225)
+[![CI pipeline](https://github.com/yunpengn/CS4225/workflows/CI%20pipeline/badge.svg)](https://github.com/yunpengn/CS4225/actions)
 
 __AY2019/2020 Semester 2<br>
 School of Computing<br>
